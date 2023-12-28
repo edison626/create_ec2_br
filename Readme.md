@@ -1,0 +1,1 @@
+go build -o ec2br main.go

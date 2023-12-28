@@ -61,18 +61,27 @@ type Asset struct {
 // 创建一个EC2Config切片包含不同的实例配置
 func configEC2Instances(batch string) []EC2Config {
 	return []EC2Config{
+		//  ----------- 测试aws 类型服务器 --------------
 		{
-			ImageId:      "ami-01da42fa32830f2d0",
-			InstanceType: "t3.medium",
-			TagValue:     batch + "br-prod-web-proxy01",
+			ImageId:      "ami-01c1b05f1b398fb4b", //Amazon Linux
+			InstanceType: "t3.small",
+			TagValue:     batch + "br-testing",
 			VolumeSize:   100,
 		},
+		//  -----------End 测试aws 类型服务器 --------------
+
 		// {
 		// 	ImageId:      "ami-01da42fa32830f2d0",
-		// 	InstanceType: "t3.small",
-		// 	TagValue:     batch + "prod-web-proxy02",
+		// 	InstanceType: "t3.medium",
+		// 	TagValue:     batch + "br-prod-web-proxy01",
 		// 	VolumeSize:   100,
 		// },
+		{
+			ImageId:      "ami-0070a028fc72c8f48", // rocky
+			InstanceType: "t3.small",
+			TagValue:     batch + "br-prod-web-proxy02",
+			VolumeSize:   100,
+		},
 		// {
 		// 	ImageId:      "ami-01da42fa32830f2d0",
 		// 	InstanceType: "t3.small",
@@ -334,9 +343,9 @@ func main() {
 			MinCount:     aws.Int64(1),
 			MaxCount:     aws.Int64(1), // 只创建一台实例
 			SecurityGroupIds: []*string{
-				aws.String("sg-033a6552e3ffe1a48"),
+				aws.String("sg-04ef918475fdf4f6c"),
 			},
-			SubnetId: aws.String("subnet-0a7e140afbc1f8f9b"), // 替换为您的子网ID
+			SubnetId: aws.String("subnet-07a05d60e8bfb62be"), // 替换为您的子网ID
 			BlockDeviceMappings: []*ec2.BlockDeviceMapping{
 				{
 					DeviceName: aws.String("/dev/sdh"),
