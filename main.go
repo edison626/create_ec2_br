@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -59,16 +60,22 @@ type Asset struct {
 }
 
 // 创建一个EC2Config切片包含不同的实例配置
-func configEC2Instances(batch string) []EC2Config {
+func configEC2Instances(batch string, wukong []string) []EC2Config {
 	return []EC2Config{
-		//  ----------- 测试aws 类型服务器 --------------
+		//----------- 测试aws 类型服务器 --------------
 		{
 			ImageId:      "ami-01c1b05f1b398fb4b", //Amazon Linux
 			InstanceType: "t3.small",
-			TagValue:     batch + "br-testing",
+			TagValue:     batch + "br-testing-" + wukong[0],
 			VolumeSize:   100,
 		},
-		//  -----------End 测试aws 类型服务器 --------------
+		{
+			ImageId:      "ami-0070a028fc72c8f48", // rocky
+			InstanceType: "t3.small",
+			TagValue:     batch + "br-prod-web-proxy02-testing-" + wukong[1],
+			VolumeSize:   100,
+		},
+		//-----------End 测试aws 类型服务器 --------------
 
 		// {
 		// 	ImageId:      "ami-01da42fa32830f2d0",
@@ -76,12 +83,12 @@ func configEC2Instances(batch string) []EC2Config {
 		// 	TagValue:     batch + "br-prod-web-proxy01",
 		// 	VolumeSize:   100,
 		// },
-		{
-			ImageId:      "ami-0070a028fc72c8f48", // rocky
-			InstanceType: "t3.small",
-			TagValue:     batch + "br-prod-web-proxy02",
-			VolumeSize:   100,
-		},
+		// {
+		// 	ImageId:      "ami-0070a028fc72c8f48", // rocky
+		// 	InstanceType: "t3.small",
+		// 	TagValue:     batch + "br-prod-web-proxy02",
+		// 	VolumeSize:   100,
+		// },
 		// {
 		// 	ImageId:      "ami-01da42fa32830f2d0",
 		// 	InstanceType: "t3.small",
@@ -310,13 +317,15 @@ func main() {
 	varBatch := os.Getenv("Batch")
 	varAssetNote := os.Getenv("AssetNote")
 	varAssetNodeDisplay := os.Getenv("AssetNodeDisplay")
+	varWukong := os.Getenv("WukongPlatform")
 	fmt.Printf("JmsServerURL : %s\n", varJmsServerURL)
 	fmt.Printf("JMSToken : %s\n", varJMSToken)
 	fmt.Printf("Batch : %s\n", varBatch)
 	fmt.Printf("AssetNote : %s\n", varAssetNote)
 	fmt.Printf("AssetNodeDisplay : %s\n", varAssetNodeDisplay)
+	fmt.Printf("WukongPlatform : %s\n", varWukong)
 
-	if varJmsServerURL == "" || varJMSToken == "" || varBatch == "" || varAssetNote == "" || varAssetNodeDisplay == "" {
+	if varJmsServerURL == "" || varJMSToken == "" || varBatch == "" || varAssetNote == "" || varAssetNodeDisplay == "" || varWukong == "" {
 		log.Fatalf("值不能为空")
 	}
 
@@ -332,7 +341,8 @@ func main() {
 	svc := ec2.New(sess)
 
 	//实例内容 - 函数
-	configs := configEC2Instances(varBatch)
+	arrayWukong := strings.Split(varWukong, ",")
+	configs := configEC2Instances(varBatch, arrayWukong)
 
 	// ... 创建实例的代码
 	for _, config := range configs {
