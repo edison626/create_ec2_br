@@ -62,195 +62,187 @@ type Asset struct {
 // 创建一个EC2Config切片包含不同的实例配置
 func configEC2Instances(batch string, wukong []string) []EC2Config {
 	return []EC2Config{
-		//----------- 测试aws 类型服务器 --------------
+
 		{
-			ImageId:      "ami-01c1b05f1b398fb4b", //Amazon Linux
-			InstanceType: "t3.small",
-			TagValue:     batch + "br-testing-" + wukong[0],
+			ImageId:      "ami-0070a028fc72c8f48",
+			InstanceType: "t3.medium",
+			TagValue:     batch + "prod-web-proxy01",
 			VolumeSize:   100,
 		},
 		{
 			ImageId:      "ami-0070a028fc72c8f48", // rocky
 			InstanceType: "t3.small",
-			TagValue:     batch + "br-prod-web-proxy02-testing-" + wukong[1],
+			TagValue:     batch + "prod-web-proxy02",
 			VolumeSize:   100,
 		},
-		//-----------End 测试aws 类型服务器 --------------
-
-		// {
-		// 	ImageId:      "ami-01da42fa32830f2d0",
-		// 	InstanceType: "t3.medium",
-		// 	TagValue:     batch + "br-prod-web-proxy01",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-0070a028fc72c8f48", // rocky
-		// 	InstanceType: "t3.small",
-		// 	TagValue:     batch + "br-prod-web-proxy02",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-01da42fa32830f2d0",
-		// 	InstanceType: "t3.small",
-		// 	TagValue:     batch + "vn-prod-callback",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-01da42fa32830f2d0",
-		// 	InstanceType: "t3.small",
-		// 	TagValue:     batch + "vn-prod-houtai",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "vn-prod-mongodb-01",
-		// 	VolumeSize:   500,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "vn-prod-mongodb-02",
-		// 	VolumeSize:   500,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "vn-prod-mongodb-03",
-		// 	VolumeSize:   500,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "t3.xlarge",
-		// 	TagValue:     batch + "vn-prod-cgcron-clinet-task01",
-		// 	VolumeSize:   300,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "vn-prod-cgcron-clinet-task02",
-		// 	VolumeSize:   300,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "prod-redis-etcd01",
-		// 	VolumeSize:   150,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "prod-redis-etcd02",
-		// 	VolumeSize:   150,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "prod-redis-etcd03",
-		// 	VolumeSize:   150,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.2xlarge",
-		// 	TagValue:     batch + "starrocks-be-01",
-		// 	VolumeSize:   300,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.2xlarge",
-		// 	TagValue:     batch + "starrocks-be-02",
-		// 	VolumeSize:   300,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.2xlarge",
-		// 	TagValue:     batch + "starrocks-be-03",
-		// 	VolumeSize:   300,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "starrocks-fe-01",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "starrocks-fe-02",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "starrocks-fe-03",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "wukong-yq-a06",
-		// 	VolumeSize:   200,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "wukong-yq-a07",
-		// 	VolumeSize:   200,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "wukong-yq-a08",
-		// 	VolumeSize:   200,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.2xlarge",
-		// 	TagValue:     batch + "yq-prod-cloudcanal-01",
-		// 	VolumeSize:   500,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.2xlarge",
-		// 	TagValue:     batch + "yq-prod-cloudcanal-02",
-		// 	VolumeSize:   500,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.2xlarge",
-		// 	TagValue:     batch + "yq-prod-cloudcanal-03",
-		// 	VolumeSize:   500,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "yq-rocketmq-prod1",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "yq-rocketmq-prod2",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "vn-prod-zinc-beanstalkd",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "vn-prod-rmqtt01",
-		// 	VolumeSize:   100,
-		// },
-		// {
-		// 	ImageId:      "ami-0e8849aa060c28662",
-		// 	InstanceType: "c5.xlarge",
-		// 	TagValue:     batch + "vn-prod-rmqtt02",
-		// 	VolumeSize:   100,
-		// },
+		{
+			ImageId:      "ami-0070a028fc72c8f48",
+			InstanceType: "t3.small",
+			TagValue:     batch + "prod-callback",
+			VolumeSize:   100,
+		},
+		{
+			ImageId:      "ami-0070a028fc72c8f48",
+			InstanceType: "t3.small",
+			TagValue:     batch + "prod-houtai",
+			VolumeSize:   100,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-mongodb-01",
+			VolumeSize:   500,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-mongodb-02",
+			VolumeSize:   500,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-mongodb-03",
+			VolumeSize:   500,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "t3.xlarge",
+			TagValue:     batch + "prod-cgcron-clinet-task01",
+			VolumeSize:   300,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-cgcron-clinet-task02",
+			VolumeSize:   300,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-redis-etcd01",
+			VolumeSize:   150,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-redis-etcd02",
+			VolumeSize:   150,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-redis-etcd03",
+			VolumeSize:   150,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.2xlarge",
+			TagValue:     batch + "starrocks-be-01",
+			VolumeSize:   300,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.2xlarge",
+			TagValue:     batch + "starrocks-be-02",
+			VolumeSize:   300,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.2xlarge",
+			TagValue:     batch + "starrocks-be-03",
+			VolumeSize:   300,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "starrocks-fe-01",
+			VolumeSize:   100,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "starrocks-fe-02",
+			VolumeSize:   100,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "starrocks-fe-03",
+			VolumeSize:   100,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "wukong-" + wukong[0],
+			VolumeSize:   200,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "wukong-" + wukong[1],
+			VolumeSize:   200,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "wukong-" + wukong[2],
+			VolumeSize:   200,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "wukong-" + wukong[3],
+			VolumeSize:   200,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.2xlarge",
+			TagValue:     batch + "yq-prod-cloudcanal-01",
+			VolumeSize:   500,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.2xlarge",
+			TagValue:     batch + "yq-prod-cloudcanal-02",
+			VolumeSize:   500,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.2xlarge",
+			TagValue:     batch + "yq-prod-cloudcanal-03",
+			VolumeSize:   500,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "yq-rocketmq-prod1",
+			VolumeSize:   100,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "yq-rocketmq-prod2",
+			VolumeSize:   100,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-zinc-beanstalkd",
+			VolumeSize:   100,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-rmqtt01",
+			VolumeSize:   100,
+		},
+		{
+			ImageId:      "ami-0e8849aa060c28662",
+			InstanceType: "c5.xlarge",
+			TagValue:     batch + "prod-rmqtt02",
+			VolumeSize:   100,
+		},
 	}
 }
 
