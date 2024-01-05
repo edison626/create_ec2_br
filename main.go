@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -60,7 +59,7 @@ type Asset struct {
 }
 
 // 创建一个EC2Config切片包含不同的实例配置
-func configEC2Instances(batch string, wukong []string) []EC2Config {
+func configEC2Instances(batch string) []EC2Config {
 	return []EC2Config{
 		{
 			ImageId:      "ami-07bbc1d4b4d620efc",
@@ -171,30 +170,6 @@ func configEC2Instances(batch string, wukong []string) []EC2Config {
 			VolumeSize:   100,
 		},
 		{
-			ImageId:      "ami-070b4a7ca707678c3",
-			InstanceType: "c5.xlarge",
-			TagValue:     batch + "wukong-" + wukong[0],
-			VolumeSize:   200,
-		},
-		{
-			ImageId:      "ami-070b4a7ca707678c3",
-			InstanceType: "c5.xlarge",
-			TagValue:     batch + "wukong-" + wukong[1],
-			VolumeSize:   200,
-		},
-		{
-			ImageId:      "ami-070b4a7ca707678c3",
-			InstanceType: "c5.xlarge",
-			TagValue:     batch + "wukong-" + wukong[2],
-			VolumeSize:   200,
-		},
-		{
-			ImageId:      "ami-070b4a7ca707678c3",
-			InstanceType: "c5.xlarge",
-			TagValue:     batch + "wukong-" + wukong[3],
-			VolumeSize:   200,
-		},
-		{
 			ImageId:      "ami-0236230c1480e99eb",
 			InstanceType: "c5.xlarge",
 			TagValue:     batch + "vn-prod-rmqtt01",
@@ -290,8 +265,8 @@ func main() {
 	svc := ec2.New(sess)
 
 	//实例内容 - 函数
-	arrayWukong := strings.Split(varWukong, ",")
-	configs := configEC2Instances(varBatch, arrayWukong)
+	//arrayWukong := strings.Split(varWukong, ",")
+	configs := configEC2Instances(varBatch)
 
 	// ... 创建实例的代码
 	for _, config := range configs {
