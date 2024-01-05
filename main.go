@@ -241,15 +241,15 @@ func main() {
 	varBatch := os.Getenv("Batch")
 	varAssetNote := os.Getenv("AssetNote")
 	varAssetNodeDisplay := os.Getenv("AssetNodeDisplay")
-	varWukong := os.Getenv("WukongPlatform")
+	//varWukong := os.Getenv("WukongPlatform")
 	fmt.Printf("JmsServerURL : %s\n", varJmsServerURL)
 	fmt.Printf("JMSToken : %s\n", varJMSToken)
 	fmt.Printf("Batch : %s\n", varBatch)
 	fmt.Printf("AssetNote : %s\n", varAssetNote)
 	fmt.Printf("AssetNodeDisplay : %s\n", varAssetNodeDisplay)
-	fmt.Printf("WukongPlatform : %s\n", varWukong)
+	//fmt.Printf("WukongPlatform : %s\n", varWukong)
 
-	if varJmsServerURL == "" || varJMSToken == "" || varBatch == "" || varAssetNote == "" || varAssetNodeDisplay == "" || varWukong == "" {
+	if varJmsServerURL == "" || varJMSToken == "" || varBatch == "" || varAssetNote == "" || varAssetNodeDisplay == "" {
 		log.Fatalf("值不能为空")
 	}
 
