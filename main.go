@@ -103,18 +103,18 @@ func configEC2Instances(batch string) []EC2Config {
 			TagValue:     batch + "vn-prod-mongodb-03",
 			VolumeSize:   500,
 		},
-		{
-			ImageId:      "ami-000d16682fc3930dc",
-			InstanceType: "t3.xlarge",
-			TagValue:     batch + "vn-prod-cgcron-clinet-task01",
-			VolumeSize:   300,
-		},
-		{
-			ImageId:      "ami-000d16682fc3930dc",
-			InstanceType: "t3.xlarge",
-			TagValue:     batch + "vn-prod-cgcron-clinet-task02",
-			VolumeSize:   300,
-		},
+		// {
+		// 	ImageId:      "ami-000d16682fc3930dc",
+		// 	InstanceType: "t3.xlarge",
+		// 	TagValue:     batch + "vn-prod-cgcron-clinet-task01",
+		// 	VolumeSize:   300,
+		// },
+		// {
+		// 	ImageId:      "ami-000d16682fc3930dc",
+		// 	InstanceType: "t3.xlarge",
+		// 	TagValue:     batch + "vn-prod-cgcron-clinet-task02",
+		// 	VolumeSize:   300,
+		// },
 		{
 			ImageId:      "ami-0ab454761b6415d1b",
 			InstanceType: "c5.xlarge",
