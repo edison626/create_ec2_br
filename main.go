@@ -64,7 +64,7 @@ func configEC2Instances(batch string) []EC2Config {
 		{
 			ImageId:      "ami-07bbc1d4b4d620efc",
 			InstanceType: "t3.medium",
-			TagValue:     batch + "vn-prod-web-proxy01",
+			TagValue:     batch + "prod-web-proxy01",
 			VolumeSize:   100,
 		},
 		{
@@ -76,31 +76,31 @@ func configEC2Instances(batch string) []EC2Config {
 		{
 			ImageId:      "ami-07bbc1d4b4d620efc",
 			InstanceType: "t3.small",
-			TagValue:     batch + "vn-prod-callback",
+			TagValue:     batch + "prod-callback",
 			VolumeSize:   100,
 		},
 		{
 			ImageId:      "ami-07bbc1d4b4d620efc",
 			InstanceType: "t3.small",
-			TagValue:     batch + "vn-prod-houtai",
+			TagValue:     batch + "prod-houtai",
 			VolumeSize:   100,
 		},
 		{
 			ImageId:      "ami-030700d8e8b2868b9",
 			InstanceType: "c5.xlarge",
-			TagValue:     batch + "vn-prod-mongodb-01",
+			TagValue:     batch + "prod-mongodb-01",
 			VolumeSize:   500,
 		},
 		{
 			ImageId:      "ami-030700d8e8b2868b9",
 			InstanceType: "c5.xlarge",
-			TagValue:     batch + "vn-prod-mongodb-02",
+			TagValue:     batch + "prod-mongodb-02",
 			VolumeSize:   500,
 		},
 		{
 			ImageId:      "ami-030700d8e8b2868b9",
 			InstanceType: "c5.xlarge",
-			TagValue:     batch + "vn-prod-mongodb-03",
+			TagValue:     batch + "prod-mongodb-03",
 			VolumeSize:   500,
 		},
 		// {
@@ -172,7 +172,7 @@ func configEC2Instances(batch string) []EC2Config {
 		{
 			ImageId:      "ami-0236230c1480e99eb",
 			InstanceType: "c5.xlarge",
-			TagValue:     batch + "vn-prod-rmqtt01",
+			TagValue:     batch + "prod-rmqtt01",
 			VolumeSize:   100,
 		},
 	}
